@@ -34,13 +34,11 @@ bg_gene_coord_df = bf.merge(gene_df.query("gene_type == 'protein_coding'"),on=['
 gene_of_interest_id = "ENSG00000245532.10"
 test_data_rep1 = 'TBD'
 test_data_rep2 = 'TBD'
-rep1_read_folder = test_data_rep1
-rep2_read_folder = test_data_rep2
 gene_tbl = gene_df.query("gene_id == @gene_of_interest_id")
 gene_chromo = gene_tbl.chrom.to_list()[0]
 # %%
-rep1_gene_chrom_read_tbl = pd.read_csv(f"{rep1_read_folder}{gene_chromo}.txt",sep="\t",header=None)
-rep2_gene_chrom_read_tbl = pd.read_csv(f"{rep2_read_folder}{gene_chromo}.txt",sep="\t",header=None)
+rep1_gene_chrom_read_tbl = pd.read_csv(test_data_rep1,sep="\t",header=None)
+rep2_gene_chrom_read_tbl = pd.read_csv(test_data_rep2,sep="\t",header=None)
 
 
 # %%
@@ -53,7 +51,7 @@ rep2_RADICL_reads.get_read_tbl()
 rep2_RADICL_reads.get_source_and_bg_read_ID()
 #%%
 
-target_chrom = "chrX"
+target_chrom = "chr1"
 rep1_target_chrom_clustering = RADICL_clustering_class_definition.RADICL_cluster(target_chrom,rep1_RADICL_reads)
 rep1_target_chrom_clustering.produce_target_chromosome_read_tbls()
 rep1_target_chrom_clustering.produce_HDBScan_cluster_tbl(5,10)
